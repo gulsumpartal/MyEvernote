@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @*<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <script src="~/Scripts/modernizr-2.6.2.js"></script>*@
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="~/Content/CustomCss/shop-homepage.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/controllers/noteController.js"></script>
+    <script src="~/Scripts/controllers/categoryController.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Start Bootstrap</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="glyphicon glyphicon-wrench"> Yönetim</span>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="glyphicon glyphicon-heart-empty"> En Beğenilenler</span>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="glyphicon glyphicon-th-list"> Son Yazılanlar</span>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="glyphicon glyphicon-info-sign"> Hakkımızda</span>
+
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="glyphicon glyphicon-log-in">  Giriş</span>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="glyphicon glyphicon-user"> Üye Ol</span>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="glyphicon glyphicon-user"> Gulsumpartal</span>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="glyphicon glyphicon-log-out"> Çıkış</span>
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    @RenderBody()
+    <!-- Footer -->
+    <div class="container">
+        <hr>
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-4 text-center">
+                    <h5>
+                        <strong>Site Haritası</strong>
+                    </h5>
+                    <hr />
+                    <p>
+                        <a href="#"><span class="glyphicon glyphicon-info-sign"></span> Hakkmızda</a><br />
+                        <a href="#"><span class="glyphicon glyphicon-star"></span> En Beğenilenler</a><br />
+                        <a href="#"><span class="glyphicon glyphicon-th-list"></span> Son Yazılar</a>
+                    </p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <h5>
+                        <strong>My Evernote</strong>
+                    </h5>
+                    <hr />
+                    <p>Tüm Hakları saklıdır &copy; @DateTime.Now.Year</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <h5>
+                        <strong>E-Bültek Üyeliği</strong>
+                    </h5>
+                    <hr />
+                    <div class="col-md-10 col-md-offset-1">
+                        <p>
+                            Sapien elit in malesuada semper mi, id sollicitudin urna fermentum.
+                        </p>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="e-posta adresiniz">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit">
+                                    <span class="glyphicon glyphicon-send"></span> Gönder
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

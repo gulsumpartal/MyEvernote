@@ -1,0 +1,51 @@
+﻿@using MyEvernote.Entities
+@model IEnumerable<Note>
+@foreach (Note currentItem in Model)
+{
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <img src="http://placehold.it/320x150" alt="@currentItem.Title">
+            <div class="caption">
+                <h4 class="pull-right">$24.99</h4>
+                <h4>
+                    <a href="#">@currentItem.Title</a>
+                </h4>
+                <h6>
+                    <span class="glyphicon glyphicon-time"></span>@currentItem.ModifiedOn.ToString("dd.MM.yy HH:mm") <br />
+                    <span class="glyphicon glyphicon-user"></span>@currentItem.Owner.Username
+                </h6>
+
+                @if (!string.IsNullOrEmpty(currentItem.Text) && currentItem.Text.Length > 67)
+                {
+                    <p> @(currentItem.Text.Substring(0, 67) + "...") </p>
+                    <p class="pull-right">
+                        <a href="#" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-chevron-right">Devamı</span>
+                        </a>
+                    </p>
+                }
+                else
+                {
+                    <p>
+                        @currentItem.Text
+                    </p>
+                }
+
+
+            </div>
+            <div>
+                <hr />
+            </div>
+            <div class="ratings">
+                <p class="pull-right">
+                    <button class="btn btn-default btn-sm" type="button"><span class="glyphicon glyphicon-comment">Yorumlar</span></button>
+                </p>
+
+                <p>
+                    <button class="btn btn-default btn-sm" type="button"><span class="glyphicon glyphicon-star-empty"></span>@currentItem.LikeCount</button>
+                </p>
+            </div>
+        </div>
+    </div>
+}
+

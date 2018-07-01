@@ -1,0 +1,16 @@
+﻿@using MyEvernote.BusinessLayer.Categories
+@using MyEvernote.Entities
+@{ 
+    CategoryService categoryService = new CategoryService();
+    List<Category> categories = categoryService.GetCategories();
+}
+
+<p class="lead">Kategoriler</p>
+<div class="list-group">
+    <a href="/Index/Index" class="list-group-item"><span class="glyphicon glyphicon-arrow-right"></span>Tümü</a>
+    @foreach (var currentItem in categories)
+    {
+        @*<a href="~/Category/Select/@currentItem.Id" title="@currentItem.Description" class="list-group-item"><span class="glyphicon glyphicon-arrow-right"></span>@currentItem.Title</a>*@
+        <a title="@currentItem.Description" class="list-group-item" onclick="categoryController.displayNotesByCategoryId(@currentItem.Id)"><span class="glyphicon glyphicon-arrow-right"></span>@currentItem.Title</a>
+    }
+</div>
