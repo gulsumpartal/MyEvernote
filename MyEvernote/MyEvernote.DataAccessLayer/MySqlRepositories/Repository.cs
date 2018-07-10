@@ -35,12 +35,22 @@ namespace MyEvernote.DataAccessLayer.MySqlRepositories
             throw new NotImplementedException();
         }
 
+        public IQueryable<T> ListQueryable()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<T> ListQueryableWithWhere(Expression<Func<T, bool>> where)
+        {
+            throw new NotImplementedException();
+        }
+
         public int Save()
         {
             throw new NotImplementedException();
         }
 
-        public int Update()
+        public int Update(T obj)
         {
             throw new NotImplementedException();
         }

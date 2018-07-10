@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MyEvernote.Entities
 {
     [Table("Notes")]
-    public class Note:EntityBase
+    public class Note : EntityBase
     {
         public int CategoryId { get; set; }
         public int EvernoteUserId { get; set; }
 
-        [Required,StringLength(60)]
+        [Required, StringLength(60)]
         public string Title { get; set; }
         [Required, StringLength(2000)]
         public string Text { get; set; }
@@ -28,6 +28,6 @@ namespace MyEvernote.Entities
         {
             Comments = new List<Comment>();
             Likes = new List<Liked>();
-                    }
+        }
     }
 }

@@ -59,6 +59,10 @@
     <Compile Include="Migrations\201807010919249_InitialCreate.Designer.cs">
       <DependentUpon>201807010919249_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807082006548_UpdateDbAddingIsDeleted.cs" />
+    <Compile Include="Migrations\201807082006548_UpdateDbAddingIsDeleted.Designer.cs">
+      <DependentUpon>201807082006548_UpdateDbAddingIsDeleted.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MySqlRepositories\Repository.cs" />
     <Compile Include="MySqlRepositories\RepositoryBase.cs" />
@@ -69,6 +73,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MyEvernote.Common\MyEvernote.Common.csproj">
+      <Project>{86846288-DB27-41A4-8461-A6FA6574FF34}</Project>
+      <Name>MyEvernote.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyEvernote.Entities\MyEvernote.Entities.csproj">
       <Project>{ed43d369-a87c-4d3d-ad0b-f4b640ad0193}</Project>
       <Name>MyEvernote.Entities</Name>
@@ -77,6 +85,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807010919249_InitialCreate.resx">
       <DependentUpon>201807010919249_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807082006548_UpdateDbAddingIsDeleted.resx">
+      <DependentUpon>201807082006548_UpdateDbAddingIsDeleted.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

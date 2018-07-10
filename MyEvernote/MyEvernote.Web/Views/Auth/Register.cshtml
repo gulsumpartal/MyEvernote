@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/CustomCss/login-register.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <div>
+        <section class="login-info">
+            <div class="container">
+                <div class="row main">
+                    <div class="form-header">
+                        <h1 class="text-center ">Kayıt Sayfası</h1>
+                    </div>
+
+                    <div class="main-content">
+                        <form id="frmRegister" class="form-horizontal">
+
+                            <div class="input-group ">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+                                <input id="userEmail" type="email" class="form-control" name="Email" placeholder="Mail Adresi" onblur="authController.componentsOnBlur(this,'userEmailRequired')">
+                            </div>
+                            <small id="userEmailRequired" class="form-text text-muted hidden">Mail Adresi Girilmelidir!</small>
+
+                            <div class="input-group ">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                                <input id="username" type="text" class="form-control" name="UserName" placeholder="Kullanıcı Adı" onblur="authController.componentsOnBlur(this,'usernameRequired')">
+                            </div>
+                            <small id="usernameRequired" class="form-text text-muted hidden">Kullanıcı Adı Girilmelidir!</small>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+                                <input id="psdword" type="password" class="form-control" name="Password" placeholder="Şifre" onblur="authController.componentsOnBlur(this,'passwordRequired')">
+                            </div>
+                            <small id="passwordRequired" class="form-text text-muted hidden">Şifre Girilmelidir!</small>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+                                <input id="repassword" type="password" class="form-control" name="RePassword" placeholder="Şifre(Tekrar)" onblur="authController.componentsOnBlur(this,'repasswordRequired')">
+                            </div>
+                            <small id="repasswordRequired" class="form-text text-muted hidden">Şifre(Tekrar) Girilmelidir!</small>
+
+                            <small id="errorMessage" class="form-text text-muted hidden"></small>
+                            <br />
+                            <div class="form-group ">
+                                <button type="button" class="btn btn-danger btn-lg btn-block login-button" onclick="authController.register()">Giriş</button>
+                            </div>
+                        </form>
+                        <div id="divRegisterResult" class="alert alert-danger hidden"> </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="~/Scripts/controllers/authController.js"></script>
+</body>
+</html>

@@ -10,11 +10,13 @@ namespace MyEvernote.DataAccessLayer.Abstract
 
         List<T> List();
 
-        IQueryable<T> List(Expression<Func<T, bool>> where);
+        IQueryable<T> ListQueryableWithWhere(Expression<Func<T, bool>> where);
+
+        IQueryable<T> ListQueryable();
 
         int Insert(T obj);
 
-        int Update();
+        int Update(T obj);
 
         int Delete(T obj);
 

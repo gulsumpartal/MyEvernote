@@ -15,9 +15,9 @@ namespace MyEvernote.Web.Controllers
         {
             return View();
         }
-        public PartialViewResult GetNotesByCategoryId(int categoryId)
+        public PartialViewResult GetNotesByCategoryId(int? categoryId)
         {
-            Category model = new CategoryService().GetCategoryById(categoryId);
+            Category model = new CategoryService().GetCategoryById(categoryId.Value);
 
             return PartialView("~/Views/Note/_NoteListPartial.cshtml", model.Notes);
         }

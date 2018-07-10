@@ -42,11 +42,22 @@
             </div>
 
             <div class="row" id="divNotes">
-            
+
             </div>
         </div>
     </div>
 </div>
 <script>
-    noteController.getNotes();
+
+    $(document).ready(function () {
+        if (window.location.href.indexOf("categoryId") > -1) {
+            var url = window.location.href;
+            var categoryId = url.split('categoryId=')[1];
+            alert(categoryId)
+            categoryController.displayNotesByCategoryId(categoryId);
+        }
+        else {
+            noteController.getNotes();
+        }
+    });
 </script>

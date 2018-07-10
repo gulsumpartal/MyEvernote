@@ -101,6 +101,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CustomCss\login-register.css" />
     <Content Include="Content\CustomCss\shop-homepage.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -108,6 +109,7 @@
     <Content Include="index.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\controllers\authController.js" />
     <Content Include="Scripts\controllers\categoryController.js" />
     <Content Include="Scripts\controllers\noteController.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -126,7 +128,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Views\Category\_CategoryListPartial.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -154,13 +155,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CategoryController.cs" />
-    <Compile Include="Controllers\IndexController.cs" />
-    <Compile Include="Controllers\InitialzeDatabaseController.cs" />
-    <Compile Include="Controllers\NoteController.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Init\WebCommon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -170,9 +170,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Index\Index.cshtml" />
-    <Content Include="Views\InitialzeDatabase\Index.cshtml" />
-    <Content Include="Views\Note\_NoteListPartial.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Category\_CategoryListPartial.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Auth\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -195,9 +197,13 @@
       <Project>{39bd2f19-d385-49a0-96ac-04d5b5e6b449}</Project>
       <Name>MyEvernote.BusinessLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyEvernote.Entities\MyEvernote.Entities.csproj">
-      <Project>{ed43d369-a87c-4d3d-ad0b-f4b640ad0193}</Project>
-      <Name>MyEvernote.Entities</Name>
+    <ProjectReference Include="..\MyEvernote.Common\MyEvernote.Common.csproj">
+      <Project>{86846288-DB27-41A4-8461-A6FA6574FF34}</Project>
+      <Name>MyEvernote.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyEvernote.DTO\MyEvernote.DTO.csproj">
+      <Project>{fe0f4919-7af9-4d59-a159-4359b395d05d}</Project>
+      <Name>MyEvernote.DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

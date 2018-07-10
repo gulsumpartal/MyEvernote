@@ -1,4 +1,5 @@
-﻿using MyEvernote.DataAccessLayer.Abstract;
+﻿using MyEvernote.Common.Inıt;
+using MyEvernote.DataAccessLayer.Abstract;
 using MyEvernote.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,30 +17,46 @@ namespace MyEvernote.DataAccessLayer.EFRepositories
         {
             _objectSet = db.Set<T>();
         }
-
-        public List<Note> Tolist()
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public List<T> List()
         {
             return _objectSet.ToList();
         }
 
-        public IQueryable<T> List(Expression<Func<T, bool>> where)
+        public IQueryable<T> ListQueryableWithWhere(Expression<Func<T, bool>> where)
         {
-            return _objectSet.Where(where);
+            return _objectSet.Where(where).AsQueryable();
+        }
+        public IQueryable<T> ListQueryable()
+        {
+            return _objectSet.AsQueryable();
         }
 
         public int Insert(T obj)
         {
             _objectSet.Add(obj);
+            if (obj is EntityBase)
+            {
+                EntityBase o = obj as EntityBase;
+
+                o.CreatedOn = DateTime.Now;
+                o.ModifiedUserName = AppCommon.Common.GetCurrentUserName();
+                o.ModifiedOn = DateTime.Now;
+                o.IsDeleted = false;
+            }
             return Save();
         }
 
-        public int Update()
+        public int Update(T obj)
         {
+            if (obj is EntityBase)
+            {
+                EntityBase o = obj as EntityBase;
+
+                o.ModifiedUserName = AppCommon.Common.GetCurrentUserName();
+                o.ModifiedOn = DateTime.Now;
+                o.IsDeleted = false;
+            }
             return Save();
         }
 
@@ -58,5 +75,6 @@ namespace MyEvernote.DataAccessLayer.EFRepositories
         {
             return _objectSet.FirstOrDefault(where);
         }
+        
     }
 }

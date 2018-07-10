@@ -16,5 +16,7 @@ namespace MyEvernote.Entities
 
         [Required,StringLength(30)]
         public string ModifiedUserName { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }
