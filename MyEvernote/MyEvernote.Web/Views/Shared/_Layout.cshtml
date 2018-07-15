@@ -1,13 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using MyEvernote.DTO.Users
+@using MyEvernote.Common.Helper
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @*<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-        <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <script src="~/Scripts/modernizr-2.6.2.js"></script>*@
-
+    <title>Meyevernote MVC Uygulaması</title>
     <!-- Bootstrap core CSS -->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <!-- Custom styles for this template -->
@@ -15,10 +13,16 @@
 
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/controllers/authController.js"></script>
     <script src="~/Scripts/controllers/noteController.js"></script>
     <script src="~/Scripts/controllers/categoryController.js"></script>
+    <script src="~/Scripts/controllers/userController.js"></script>
 </head>
 <body>
+
+    @{
+        UserDto user = UserHelper.CurrentUser;
+    }
     <!-- Navigation -->
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -31,67 +35,70 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="/Home/Admin">Home Page</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span class="glyphicon glyphicon-wrench"> Yönetim</span>
+                @if (user != null)
+                {
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="glyphicon glyphicon-wrench"> Yönetim</span>
 
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Home/MostLiked">
-                            <span class="glyphicon glyphicon-heart-empty"> En Beğenilenler</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/MostLiked">
+                                <span class="glyphicon glyphicon-heart-empty"> En Beğenilenler</span>
 
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        @* <a class="nav-link" href="/Home/Index"> *@
-                        <a class="nav-link" href="/Home/Index">
-                            <span class="glyphicon glyphicon-th-list"> Son Yazılanlar</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            @* <a class="nav-link" href="/Home/Index"> *@
+                            <a class="nav-link" href="/Home/Index">
+                                <span class="glyphicon glyphicon-th-list"> Son Yazılanlar</span>
 
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Home/About">
-                            <span class="glyphicon glyphicon-info-sign"> Hakkımızda</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/About">
+                                <span class="glyphicon glyphicon-info-sign"> Hakkımızda</span>
 
-                        </a>
-                    </li>
-                </ul>
+                            </a>
+                        </li>
+                    </ul>
+                }
+
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span class="glyphicon glyphicon-log-in">  Giriş</span>
+                    @if (user == null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Auth/Register">
+                                <span class="glyphicon glyphicon-user"> Üye Ol</span>
 
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span class="glyphicon glyphicon-user"> Üye Ol</span>
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/User/Index" >
+                                <span class="glyphicon glyphicon-user"> @user.Username</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="" onclick="authController.logout()">
+                                <span class="glyphicon glyphicon-log-out"> Çıkış</span>
+                            </a>
+                        </li>
+                    }
 
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span class="glyphicon glyphicon-user"> Gulsumpartal</span>
-
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="authController.logout()">
-                            <span class="glyphicon glyphicon-log-out"> Çıkış</span>
-
-                        </a>
-                    </li>
                 </ul>
             </div>
-            </div>
-            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>

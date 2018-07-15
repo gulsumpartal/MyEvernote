@@ -50,14 +50,18 @@
     <Compile Include="Categories\CategoryService.cs" />
     <Compile Include="Notes\NoteService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Response\ResponseMessage.cs" />
     <Compile Include="Test\Test.cs" />
     <Compile Include="Users\UserService.cs" />
+    <Compile Include="Validation\User\UserValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MyEvernote.Common\MyEvernote.Common.csproj">
+      <Project>{86846288-db27-41a4-8461-a6fa6574ff34}</Project>
+      <Name>MyEvernote.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyEvernote.DataAccessLayer\MyEvernote.DataAccessLayer.csproj">
       <Project>{0c8848ef-f764-488d-a263-da66d1ed7067}</Project>
       <Name>MyEvernote.DataAccessLayer</Name>

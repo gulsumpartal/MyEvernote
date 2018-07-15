@@ -42,7 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categories\CategoryListDto.cs" />
+    <Compile Include="Informing\ErrorNotify.cs" />
+    <Compile Include="Informing\InfoNotify.cs" />
+    <Compile Include="Informing\NotifyBase.cs" />
+    <Compile Include="Informing\SuccessNotify.cs" />
+    <Compile Include="Informing\WarningNotify.cs" />
     <Compile Include="Notes\NoteListDto.cs" />
+    <Compile Include="Response\ResponseMessage.cs" />
+    <Compile Include="Users\InsertUserDto.cs" />
     <Compile Include="Users\LoginUserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\RegisterUserDto.cs" />

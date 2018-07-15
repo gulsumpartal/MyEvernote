@@ -43,6 +43,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +63,14 @@
     <Compile Include="Migrations\201807082006548_UpdateDbAddingIsDeleted.cs" />
     <Compile Include="Migrations\201807082006548_UpdateDbAddingIsDeleted.Designer.cs">
       <DependentUpon>201807082006548_UpdateDbAddingIsDeleted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807141329078_EvernoteEntityChange.cs" />
+    <Compile Include="Migrations\201807141329078_EvernoteEntityChange.Designer.cs">
+      <DependentUpon>201807141329078_EvernoteEntityChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807141330433_EvernoteEntityChange1.cs" />
+    <Compile Include="Migrations\201807141330433_EvernoteEntityChange1.Designer.cs">
+      <DependentUpon>201807141330433_EvernoteEntityChange1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MySqlRepositories\Repository.cs" />
@@ -88,6 +97,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807082006548_UpdateDbAddingIsDeleted.resx">
       <DependentUpon>201807082006548_UpdateDbAddingIsDeleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807141329078_EvernoteEntityChange.resx">
+      <DependentUpon>201807141329078_EvernoteEntityChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807141330433_EvernoteEntityChange1.resx">
+      <DependentUpon>201807141330433_EvernoteEntityChange1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

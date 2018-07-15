@@ -1,4 +1,5 @@
-﻿using MyEvernote.Common.Inıt;
+﻿using MyEvernote.Common.Helper;
+using MyEvernote.Common.Inıt;
 using MyEvernote.DataAccessLayer.Abstract;
 using MyEvernote.Entities;
 using System;
@@ -6,7 +7,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-
+using System.Transactions;
 namespace MyEvernote.DataAccessLayer.EFRepositories
 {
     public class Repository<T> : RepositoryBase, IRepository<T> where T : class
@@ -17,7 +18,7 @@ namespace MyEvernote.DataAccessLayer.EFRepositories
         {
             _objectSet = db.Set<T>();
         }
-        
+
         public List<T> List()
         {
             return _objectSet.ToList();
@@ -68,13 +69,30 @@ namespace MyEvernote.DataAccessLayer.EFRepositories
 
         public int Save()
         {
-            return db.SaveChanges();
+            int result = 0;
+            using (var transaction = db.Database.BeginTransaction())
+            {
+                try
+                {
+                    result =db.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Utility.ReportError(ex);
+                }
+            }
+            return result;
         }
 
         public T Find(Expression<Func<T, bool>> where)
         {
             return _objectSet.FirstOrDefault(where);
         }
-        
+        public bool Any(Expression<Func<T, bool>> where)
+        {
+            return _objectSet.Any(where);
+        }
     }
 }

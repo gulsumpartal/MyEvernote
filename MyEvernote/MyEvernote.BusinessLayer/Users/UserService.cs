@@ -1,18 +1,20 @@
-﻿using MyEvernote.BusinessLayer.Response;
+﻿using MyEvernote.BusinessLayer.Validation.User;
 using MyEvernote.DataAccessLayer.EFRepositories;
+using MyEvernote.DTO.Response;
 using MyEvernote.DTO.Users;
 using MyEvernote.Entities;
 using System;
-using System.Linq;
 
 namespace MyEvernote.BusinessLayer.Users
 {
     public class UserService
     {
         private Repository<EvernoteUser> repo;
+        private readonly UserValidator _uservalidator;
         public UserService()
         {
             repo = new Repository<EvernoteUser>();
+            _uservalidator = new UserValidator();
         }
         private EvernoteUser GetEvernoteUser(string userName, string password)
         {
@@ -21,7 +23,7 @@ namespace MyEvernote.BusinessLayer.Users
             return result;
         }
 
-        public ResponseMessage<UserDto>  GetUserDetails(string username, string password)
+        public ResponseMessage<UserDto> GetUserDetails(string username, string password)
         {
             var evernoteUser = GetEvernoteUser(username, password);
 
@@ -40,19 +42,20 @@ namespace MyEvernote.BusinessLayer.Users
                         Surname = evernoteUser.Surname,
                         IsAdmin = evernoteUser.IsAdmin,
                         Email = evernoteUser.Email,
-                        Username= evernoteUser.Username
+                        Username = evernoteUser.Username,
+                        ProfileImagePath=evernoteUser.ImageFilePath
                     };
                     result.IsSuccess = true;
                     result.Result = data;
                 }
                 else
                 {
-                    result.Errors.Add("Kullanıcı bilgileri aktive edilmemiş lütfen mail adresinizi kontrol ediniz!");
+                    result.Messages.Add("Kullanıcı bilgileri aktive edilmemiş lütfen mail adresinizi kontrol ediniz!");
                 }
             }
             else
-            {               
-                result.Errors.Add("Kullanıcı Adı veya Şifre Hatalı!");             
+            {
+                result.Messages.Add("Kullanıcı Adı veya Şifre Hatalı!");
             }
             return result;
         }
@@ -61,7 +64,9 @@ namespace MyEvernote.BusinessLayer.Users
         {
             var result = new ResponseMessage<RegisterUserDto>();
 
-            Validation(dto, result);
+            var mailIsValid = _uservalidator.MailIsValid(dto.Email);
+
+            result = mailIsValid.IsSuccess ? _uservalidator.SameUserExists(dto) :mailIsValid ;
 
             if (result.IsSuccess)
             {
@@ -77,38 +82,19 @@ namespace MyEvernote.BusinessLayer.Users
 
                 int affectedRowCount = repo.Insert(userEntity);
 
-                if (affectedRowCount > 0)
-                {
-                    //mail gönderme işlemleri
-                }
-
+                result.IsSuccess = affectedRowCount > 0 ? true : false;
             }
-
             return result;
         }
 
-        private void Validation(RegisterUserDto dto, ResponseMessage<RegisterUserDto> result)
+        public Guid GetActivedGuid(string username,string password)
         {
-            if (SameUserExitsByMail(dto.Email))
-            {
-                result.IsSuccess = false;
-                result.Errors.Add("Sistemde bu mail adresine sahip başka bir kullanıcı mevcut!");
-            }
-            if (SameUserExitsByUserName(dto.Username))
-            {
-                result.IsSuccess = false;
-                result.Errors.Add("Sistemde bu kullanıcı sahip başka bir kullanıcı mevcut!");
-            }
+            return repo.Find(p => p.Username == username && p.Password == password).ActivateGuid;
         }
 
-        private bool SameUserExitsByUserName(string username)
+        public ResponseMessage<InsertUserDto> ValidateForActivedProfile(string activetedGuid)
         {
-            return repo.ListQueryableWithWhere(p => p.Username == username && p.IsDeleted == false).Any();
-        }
-
-        private bool SameUserExitsByMail(string mail)
-        {
-            return repo.ListQueryableWithWhere(p => p.Email == mail && p.IsDeleted == false).Any();
+            return _uservalidator.ValidateForActivedUser(activetedGuid);
         }
     }
 }

@@ -1,0 +1,14 @@
+﻿Content-Type: text/html; charset=utf-8
+Subject: MyEvernote Profil Oluşturma
+
+
+<html>
+<body>
+ Sayın @Model.prop["username"] aşağıdaki linki tıklayarak profil bilgilerinizi oluşturunuz
+    <br />
+    <br />
+    <a href="@Model.prop["baseUrl"]/User/ActivedProfile?KeyValue=@Model.prop["keyValue"]">
+        @Model.prop["baseUrl"]User/Profile/KeyValue=@Model.prop["keyValue"]
+    </a>
+</body>
+</html>

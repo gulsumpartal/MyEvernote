@@ -1,12 +1,10 @@
-﻿
-using MyEvernote.BusinessLayer.Response;
-using MyEvernote.BusinessLayer.Users;
-using MyEvernote.Common.Helper;
+﻿using MyEvernote.BusinessLayer.Users;
+using MyEvernote.Common.Service;
+using MyEvernote.DTO.Informing;
+using MyEvernote.DTO.Response;
 using MyEvernote.DTO.Users;
-using System;
+using MyEvernote.Web.Helper;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MyEvernote.Web.Controllers
@@ -23,34 +21,78 @@ namespace MyEvernote.Web.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public JsonResult Login(LoginUserDto dto)
         {
-              ResponseMessage<UserDto> response  = _userService.GetUserDetails(dto.UserName, dto.Password);
+            ResponseMessage<UserDto> response = _userService.GetUserDetails(dto.UserName, dto.Password);
             if (response.IsSuccess)
             {
-                UserHelper.CurrentUser = response.Result;
+                Common.Helper.UserHelper.CurrentUser = response.Result;
             }
-                return Json(response);
+            return Json(response);
         }
+
         public ActionResult Register()
         {
             return View();
         }
-        [HttpPost]
-        public JsonResult Register(RegisterUserDto dto)
-        {
-            ResponseMessage<RegisterUserDto> response = _userService.AddUser(dto);
 
-            return Json(response); ;
+        [HttpPost]
+        public PartialViewResult Register(RegisterUserDto dto)
+        {
+            ResponseMessage<RegisterUserDto> result = _userService.AddUser(dto);
+            if (result.IsSuccess)
+            {
+                result.Messages.Add(SendMailForActived(dto));
+                var model = new SuccessNotify
+                {
+                    Items = result.Messages,
+                    Title = "Kayıt İşlemi Başarılı!",
+                    RedirectingUrl = "/Auth/Login"
+                };
+                return PartialView("~/Views/Shared/_SuccessPartial.cshtml", model);
+            }
+
+            else
+            {
+                var model = new ErrorNotify
+                {
+                    RedirectingUrl = "/Auth/Login"
+                };
+                if (result.Messages.Count > 0)
+                {
+                    model.Items = result.Messages;
+                }
+                else
+                {
+                    model.Items.Add("İşlem sırasında hata oluştu lütfen tekrar deneyiniz!");
+                }
+                return PartialView("~/Views/Shared/_Error.cshtml", model);
+            }
         }
+
+        private string SendMailForActived(RegisterUserDto dto)
+        {
+            string result = string.Empty;
+            Dictionary<string, string> mailProp = new Dictionary<string, string>();
+            mailProp.Add("baseUrl", Utility.BaseUrl);
+            mailProp.Add("username", dto.Username);
+            mailProp.Add("keyValue", _userService.GetActivedGuid(dto.Username, dto.Password).ToString());
+            if (MailService.SendMail(dto.Email, MailService.MailTemplateKeys.ActivedAccountTemplate, mailProp))
+                result = "Kullanıcı Profil Bilgilerini Doldurmak İçin Mailinizi Kontrol Ediniz!";
+            else
+                result = "Kullanıcı Bilgileri Başarılı ile Kayıt Edilmiştir. Profil Aktivasyon mail gönderimi sırasında hata oluşmuştur. Lütfen sistem yöneticiniz ile iletişime geçiniz!";
+            return result;
+        }
+
         [HttpPost]
         public JsonResult Logout()
         {
-            UserHelper.CurrentUser = null;
+            Common.Helper.UserHelper.CurrentUser = null;
 
             return Json("OK");
         }
-        
+
     }
 }

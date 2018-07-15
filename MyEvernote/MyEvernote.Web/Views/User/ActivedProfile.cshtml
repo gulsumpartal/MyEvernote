@@ -1,0 +1,64 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container" style="padding-top: 60px;">
+        <h1 class="page-header">Edit Profile</h1>
+        <div class="row">
+            @using (Html.BeginForm("ActivedProfile", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <!-- left column -->
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="text-center">
+                        <img class="avatar img-circle img-thumbnail" alt="image">
+                        <input type="file" name="ProfilImagePath" class="text-center center-block well well-sm">
+                    </div>
+                </div>
+                <!-- edit form column -->
+                <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+                    <h3>Kişisel Bilgiler</h3>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Ad:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="Name" type="text" required>
+                        </div>
+                    </div>
+                    <br />  <br />
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">SoyAd:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="Surname" type="text" required>
+                        </div>
+                    </div>
+                    <br />  <br />
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-8">
+                            <input class="btn btn-primary" value="Kaydet" type="submit">
+                            <span></span>
+                            <input class="btn btn-default" value="İptal" type="reset">
+                        </div>
+                    </div>
+                    <input type="hidden" name="ActivedGuid" value=@Request.QueryString["KeyValue"]></input>
+                    <br />
+                </div>
+            }
+
+        </div>
+    </div>
+   
+</body>
+</html>

@@ -23,5 +23,7 @@ namespace MyEvernote.DataAccessLayer.Abstract
         int Save();
 
         T Find(Expression<Func<T, bool>> where);
+
+        bool Any(Expression<Func<T, bool>> where);
     }
 }

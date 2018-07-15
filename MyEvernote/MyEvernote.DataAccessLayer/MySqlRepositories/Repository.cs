@@ -10,6 +10,11 @@ namespace MyEvernote.DataAccessLayer.MySqlRepositories
 {
     public class Repository<T> : RepositoryBase, IRepository<T> where T : class
     {
+        public bool Any(Expression<Func<T, bool>> where)
+        {
+            throw new NotImplementedException();
+        }
+
         public int Delete(T obj)
         {
             throw new NotImplementedException();

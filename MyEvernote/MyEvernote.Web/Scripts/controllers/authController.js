@@ -17,6 +17,7 @@
             });
         }
     },
+
     validaton: function (data) {
         var userName = $('#username').val();
         if (userName == '') {
@@ -24,7 +25,7 @@
             return false;
         }
         var psdword = $('#password').val();
-        if (psdword == '') {
+        if (psdword === '') {
             $("#passwordRequired").removeClass('hidden');
             return false;
         }
@@ -59,22 +60,16 @@
     },
 
     register: function () {
+
         var isValid = this.registerValidation();
         if (isValid) {
 
             var data = $('#frmRegister').serialize();
-            $.post('/Auth/Register', data, function (response) {
-                if (!response.IsSuccess) {
-                    $('#divRegisterResult').html(respose.Errors);
-                    $("#divRegisterResult").removeClass('hidden');
-                }
-                else {
-                    $('#divRegisterResult').html("Kayıt İşlemi Başarılı");
-                    $("#divRegisterResult").removeClass('hidden');
-                    setTimeout(function () { location.href = "/Auth/Login" }, 5000);
-
-                }
-            });
+            $.post('/Auth/Register',
+                data, function (res) {
+                    $('#divInformation').html(res);
+                   $('#messageBox').modal('show');
+                });
         }
     },
 
@@ -112,7 +107,7 @@
 
     logout: function () {
         $.post('/Auth/Logout', function (respomse) {
-            if (respomse == "OK") {
+            if (respomse === "OK") {
                 location.href = '/Auth/Login';
             }
 

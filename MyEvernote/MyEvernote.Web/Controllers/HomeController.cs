@@ -1,5 +1,9 @@
 ﻿using MyEvernote.BusinessLayer.Notes;
+using MyEvernote.Common.Service;
 using MyEvernote.DTO.Notes;
+using MyEvernote.DTO.Users;
+using MyEvernote.Web.Helper;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Web.Mvc;
@@ -42,6 +46,7 @@ namespace MyEvernote.Web.Controllers
 
             return View("Index", model);
         }
+
         public ActionResult About()
         {
             return View();

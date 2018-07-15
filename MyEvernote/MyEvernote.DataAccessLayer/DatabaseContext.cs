@@ -21,5 +21,7 @@ namespace MyEvernote.DataAccessLayer
         public DbSet<Category> Categories { get; set; }
         public DbSet<Liked> Likes { get; set; }
         #endregion
+
+
     }
 }
