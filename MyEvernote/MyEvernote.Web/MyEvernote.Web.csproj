@@ -191,6 +191,7 @@
     <Content Include="Views\Shared\_Error.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\ActivedProfile.cshtml" />
+    <Content Include="Views\Shared\_FooterPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

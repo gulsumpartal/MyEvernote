@@ -1,4 +1,8 @@
-﻿
+﻿@using MyEvernote.DTO.Response
+@using MyEvernote.DTO.Users
+@{
+    ResponseMessage<InsertUserDto> responseMess = TempData["model"] as ResponseMessage<InsertUserDto>;
+}
 @{
     Layout = null;
 }
@@ -12,14 +16,32 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/controllers/userController.js"></script>
 </head>
 
 <body>
     <div class="container" style="padding-top: 60px;">
-        <h1 class="page-header">Edit Profile</h1>
+        <h1 class="page-header">Actived Profile</h1>
+        @if (responseMess != null)
+        {
+            <div id="divActivedResult" onload="userController.divActivedResultLoad()">
+                @if (responseMess.IsSuccess)
+                {
+                <div class="alert alert-success">
+                    <strong>İşlem Başarılı!</strong> @responseMess.Messages.First()
+                </div>
+                }
+                else
+                {
+                <div class="alert alert-danger">
+                    <strong>Hata</strong> @responseMess.Messages.First()
+                </div>
+                }
+            </div>
+        }
+
         <div class="row">
-            @using (Html.BeginForm("ActivedProfile", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
+            <form id="frmActivedProfile" method="post" enctype="multipart/form-data">
                 <!-- left column -->
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="text-center">
@@ -47,7 +69,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-8">
-                            <input class="btn btn-primary" value="Kaydet" type="submit">
+                            <input class="btn btn-primary" value="Kaydet" type="submit" onclick="userController.activetedUserProfile()">
                             <span></span>
                             <input class="btn btn-default" value="İptal" type="reset">
                         </div>
@@ -55,10 +77,12 @@
                     <input type="hidden" name="ActivedGuid" value=@Request.QueryString["KeyValue"]></input>
                     <br />
                 </div>
-            }
+                <div id="divResult"></div>
+            </form>
 
         </div>
+
     </div>
-   
+
 </body>
 </html>

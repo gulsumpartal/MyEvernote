@@ -1,6 +1,8 @@
 ﻿using MyEvernote.BusinessLayer.Users;
 using MyEvernote.DTO.Informing;
+using MyEvernote.DTO.Response;
 using MyEvernote.DTO.Users;
+using System;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,7 +10,7 @@ namespace MyEvernote.Web.Controllers
 {
     public class UserController : Controller
     {
-        private readonly UserService _userService ;
+        private readonly UserService _userService;
         public UserController()
         {
             _userService = new UserService();
@@ -19,7 +21,7 @@ namespace MyEvernote.Web.Controllers
         }
         public PartialViewResult ShowProfile()
         {
-            var model =Common.Helper.UserHelper.CurrentUser;
+            var model = Common.Helper.UserHelper.CurrentUser;
             return PartialView("~/Views/User/_ShowProfilePartial.cshtml", model);
         }
         [HttpPost]
@@ -34,30 +36,56 @@ namespace MyEvernote.Web.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult ActivedProfile(InsertUserDto dto,HttpPostedFileBase ProfilImagePath)
+        public ActionResult ActivedProfile(InsertUserDto dto)
         {
             //TODO:Gülsüm burada activedguid var mı kontrolü koy
-            var result = _userService.ValidateForActivedProfile(dto.ActivedGuid);
-            if (!result.IsSuccess)
+            ResponseMessage<InsertUserDto> result = _userService.ValidateForActivedProfile(dto.ActivedGuid);
+            try
             {
-                var model = new ErrorNotify
+                string filename = string.Empty;
+
+                if (result.IsSuccess)
                 {
-                    Items = result.Messages,
-                    RedirectingUrl = "/Auth/Login"
-                };
-                return PartialView("~/Views/Shared/_Error.cshtml", model);
-            }
-            
-            if (ProfilImagePath != null)
-            {
-                if (ProfilImagePath.ContentType=="image/jpeg"|| ProfilImagePath.ContentType=="image/jpg" || ProfilImagePath.ContentType=="image/png")
-                {
-                    string filename = string.Format("user_{0}.{1}", dto.ActivedGuid, ProfilImagePath.ContentType.Split('/')[1]);
-                    ProfilImagePath.SaveAs(Server.MapPath($"~/assets/Images/{filename}"));
-                    dto.ProfilImagePath = filename;
+                    if (dto.ProfilImage != null)
+                    {
+                        if (dto.ProfilImage.ContentType == "image/jpeg" || dto.ProfilImage.ContentType == "image/jpg" || dto.ProfilImage.ContentType == "image/png")
+                        {
+                            filename = string.Format("user_{0}.{1}", dto.ActivedGuid, dto.ProfilImage.ContentType.Split('/')[1]);
+                            dto.ProfilImage.SaveAs(Server.MapPath($"~/assets/Images/{filename}"));
+
+                            dto.ImagePath = filename;
+
+                            result.Messages.Clear();
+                            result = _userService.ActivedUser(dto);
+                        }
+                        else
+                        {
+                            result.Messages.Clear();
+                            result.IsSuccess = false;
+                            result.Messages.Add("Yüklenen resmin uzantısı .png,.jpg ya da .jpeg olmalıdır!");
+                        }
+                    }
+                    else
+                    {
+                        result.Messages.Clear();
+                        result.IsSuccess = false;
+                        result.Messages.Add("Profil resmi boş olamaz!");
+                    }
                 }
+
+
             }
-            return PartialView("~/Views/Shared/_Error.cshtml");
+            catch (Exception ex)
+            {
+                result.Messages.Clear();
+                result.IsSuccess = false;
+                result.Messages.Add("İşlem sırasında beklenmedik bir hata oluştu!");
+                Common.Helper.Utility.ReportError(ex);
+
+
+            }
+            TempData["model"] = result;
+            return View();
         }
     }
 }

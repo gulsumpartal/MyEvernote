@@ -43,7 +43,7 @@ namespace MyEvernote.BusinessLayer.Users
                         IsAdmin = evernoteUser.IsAdmin,
                         Email = evernoteUser.Email,
                         Username = evernoteUser.Username,
-                        ProfileImagePath=evernoteUser.ImageFilePath
+                        ProfileImagePath = evernoteUser.ImageFilePath
                     };
                     result.IsSuccess = true;
                     result.Result = data;
@@ -66,7 +66,7 @@ namespace MyEvernote.BusinessLayer.Users
 
             var mailIsValid = _uservalidator.MailIsValid(dto.Email);
 
-            result = mailIsValid.IsSuccess ? _uservalidator.SameUserExists(dto) :mailIsValid ;
+            result = mailIsValid.IsSuccess ? _uservalidator.SameUserExists(dto) : mailIsValid;
 
             if (result.IsSuccess)
             {
@@ -87,7 +87,7 @@ namespace MyEvernote.BusinessLayer.Users
             return result;
         }
 
-        public Guid GetActivedGuid(string username,string password)
+        public Guid GetActivedGuid(string username, string password)
         {
             return repo.Find(p => p.Username == username && p.Password == password).ActivateGuid;
         }
@@ -95,6 +95,40 @@ namespace MyEvernote.BusinessLayer.Users
         public ResponseMessage<InsertUserDto> ValidateForActivedProfile(string activetedGuid)
         {
             return _uservalidator.ValidateForActivedUser(activetedGuid);
+        }
+
+        public ResponseMessage<InsertUserDto> ActivedUser(InsertUserDto dto)
+        {
+            ResponseMessage<InsertUserDto> result = new ResponseMessage<InsertUserDto>();
+            try
+            {
+                var user = repo.Find(p => p.ActivateGuid.ToString() == dto.ActivedGuid);
+
+                user.Name = dto.Name;
+                user.Surname = dto.Surname;
+                user.IsActive = true;
+                user.ImageFilePath = dto.ImagePath;
+
+                if (repo.Update(user) > 0)
+                {
+                    result.IsSuccess = true;
+                    result.Messages.Add("İşlem Başarılı");
+                }
+                else
+                {
+                    result.IsSuccess = false;
+                    result.Messages.Add("İşlem sırasında beklenmedik bir hata oluştu lütfen data sonra tekrar deneyin");
+                }
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Messages.Add("İşlem sırasında beklenmedik bir hata oluştu lütfen data sonra tekrar deneyin");
+                Common.Helper.Utility.ReportError(ex);
+
+            }
+            return result;
+
         }
     }
 }

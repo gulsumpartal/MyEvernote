@@ -2,3 +2,197 @@
 
  StackTrace:
 System.Exception: 'System.Exception' türünde özel durum oluþturuldu.
+2018-07-16 22:27:02,052 [18] ERROR ErrorLogger - The context cannot be used while the model is being created. This exception may be thrown if the context is used inside the OnModelCreating method or if the same context instance is accessed by multiple threads concurrently. Note that instance members of DbContext and related classes are not guaranteed to be thread safe.
+
+ StackTrace:   konum: System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   konum: System.Data.Entity.Internal.InternalContext.Initialize()
+   konum: System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   konum: System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   konum: System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   konum: System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   konum: System.Linq.Queryable.Any[TSource](IQueryable`1 source, Expression`1 predicate)
+   konum: MyEvernote.DataAccessLayer.EFRepositories.Repository`1.Any(Expression`1 where) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.DataAccessLayer\EFRepositories\Repository.cs içinde: satýr 95
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.UserIsExistByActivedGuid(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 80
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.ValidateForActivedUser(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 52
+   konum: MyEvernote.BusinessLayer.Users.UserService.ValidateForActivedProfile(String activetedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Users\UserService.cs içinde: satýr 97
+   konum: MyEvernote.Web.Controllers.UserController.ActivedProfile(InsertUserDto dto) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.Web\Controllers\UserController.cs içinde: satýr 43
+System.InvalidOperationException: The context cannot be used while the model is being created. This exception may be thrown if the context is used inside the OnModelCreating method or if the same context instance is accessed by multiple threads concurrently. Note that instance members of DbContext and related classes are not guaranteed to be thread safe.
+   konum: System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   konum: System.Data.Entity.Internal.InternalContext.Initialize()
+   konum: System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   konum: System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   konum: System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   konum: System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   konum: System.Linq.Queryable.Any[TSource](IQueryable`1 source, Expression`1 predicate)
+   konum: MyEvernote.DataAccessLayer.EFRepositories.Repository`1.Any(Expression`1 where) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.DataAccessLayer\EFRepositories\Repository.cs içinde: satýr 95
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.UserIsExistByActivedGuid(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 80
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.ValidateForActivedUser(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 52
+   konum: MyEvernote.BusinessLayer.Users.UserService.ValidateForActivedProfile(String activetedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Users\UserService.cs içinde: satýr 97
+   konum: MyEvernote.Web.Controllers.UserController.ActivedProfile(InsertUserDto dto) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.Web\Controllers\UserController.cs içinde: satýr 43
+2018-07-16 22:28:17,172 [18] ERROR ErrorLogger - Nesne baþvurusu bir nesnenin örneðine ayarlanmadý.
+
+ StackTrace:   konum: System.Data.Entity.Internal.Linq.InternalSet`1.get_Expression()
+   konum: System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Expression()
+   konum: System.Linq.Queryable.Any[TSource](IQueryable`1 source, Expression`1 predicate)
+   konum: MyEvernote.DataAccessLayer.EFRepositories.Repository`1.Any(Expression`1 where) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.DataAccessLayer\EFRepositories\Repository.cs içinde: satýr 95
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.UserIsExistByActivedGuid(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 80
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.ValidateForActivedUser(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 52
+   konum: MyEvernote.BusinessLayer.Users.UserService.ValidateForActivedProfile(String activetedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Users\UserService.cs içinde: satýr 97
+   konum: MyEvernote.Web.Controllers.UserController.ActivedProfile(InsertUserDto dto) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.Web\Controllers\UserController.cs içinde: satýr 43
+System.NullReferenceException: Nesne baþvurusu bir nesnenin örneðine ayarlanmadý.
+   konum: System.Data.Entity.Internal.Linq.InternalSet`1.get_Expression()
+   konum: System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Expression()
+   konum: System.Linq.Queryable.Any[TSource](IQueryable`1 source, Expression`1 predicate)
+   konum: MyEvernote.DataAccessLayer.EFRepositories.Repository`1.Any(Expression`1 where) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.DataAccessLayer\EFRepositories\Repository.cs içinde: satýr 95
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.UserIsExistByActivedGuid(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 80
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.ValidateForActivedUser(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 52
+   konum: MyEvernote.BusinessLayer.Users.UserService.ValidateForActivedProfile(String activetedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Users\UserService.cs içinde: satýr 97
+   konum: MyEvernote.Web.Controllers.UserController.ActivedProfile(InsertUserDto dto) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.Web\Controllers\UserController.cs içinde: satýr 43
+2018-07-16 22:33:50,530 [18] ERROR ErrorLogger - The context cannot be used while the model is being created. This exception may be thrown if the context is used inside the OnModelCreating method or if the same context instance is accessed by multiple threads concurrently. Note that instance members of DbContext and related classes are not guaranteed to be thread safe.
+
+ StackTrace:   konum: System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   konum: System.Data.Entity.Internal.InternalContext.Initialize()
+   konum: System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   konum: System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   konum: System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   konum: System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   konum: System.Linq.Queryable.Any[TSource](IQueryable`1 source, Expression`1 predicate)
+   konum: MyEvernote.DataAccessLayer.EFRepositories.Repository`1.Any(Expression`1 where) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.DataAccessLayer\EFRepositories\Repository.cs içinde: satýr 95
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.UserIsExistByActivedGuid(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 80
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.ValidateForActivedUser(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 52
+   konum: MyEvernote.BusinessLayer.Users.UserService.ValidateForActivedProfile(String activetedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Users\UserService.cs içinde: satýr 97
+   konum: MyEvernote.Web.Controllers.UserController.ActivedProfile(InsertUserDto dto) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.Web\Controllers\UserController.cs içinde: satýr 43
+System.InvalidOperationException: The context cannot be used while the model is being created. This exception may be thrown if the context is used inside the OnModelCreating method or if the same context instance is accessed by multiple threads concurrently. Note that instance members of DbContext and related classes are not guaranteed to be thread safe.
+   konum: System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   konum: System.Data.Entity.Internal.InternalContext.Initialize()
+   konum: System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   konum: System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   konum: System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   konum: System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   konum: System.Linq.Queryable.Any[TSource](IQueryable`1 source, Expression`1 predicate)
+   konum: MyEvernote.DataAccessLayer.EFRepositories.Repository`1.Any(Expression`1 where) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.DataAccessLayer\EFRepositories\Repository.cs içinde: satýr 95
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.UserIsExistByActivedGuid(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 80
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.ValidateForActivedUser(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 52
+   konum: MyEvernote.BusinessLayer.Users.UserService.ValidateForActivedProfile(String activetedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Users\UserService.cs içinde: satýr 97
+   konum: MyEvernote.Web.Controllers.UserController.ActivedProfile(InsertUserDto dto) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.Web\Controllers\UserController.cs içinde: satýr 43
+2018-07-16 22:38:22,428 [18] ERROR ErrorLogger - The context cannot be used while the model is being created. This exception may be thrown if the context is used inside the OnModelCreating method or if the same context instance is accessed by multiple threads concurrently. Note that instance members of DbContext and related classes are not guaranteed to be thread safe.
+
+ StackTrace:   konum: System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   konum: System.Data.Entity.Internal.InternalContext.Initialize()
+   konum: System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   konum: System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   konum: System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   konum: System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   konum: System.Linq.Queryable.Any[TSource](IQueryable`1 source, Expression`1 predicate)
+   konum: MyEvernote.DataAccessLayer.EFRepositories.Repository`1.Any(Expression`1 where) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.DataAccessLayer\EFRepositories\Repository.cs içinde: satýr 95
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.UserIsExistByActivedGuid(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 80
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.ValidateForActivedUser(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 52
+   konum: MyEvernote.BusinessLayer.Users.UserService.ValidateForActivedProfile(String activetedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Users\UserService.cs içinde: satýr 97
+   konum: MyEvernote.Web.Controllers.UserController.ActivedProfile(InsertUserDto dto) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.Web\Controllers\UserController.cs içinde: satýr 43
+System.InvalidOperationException: The context cannot be used while the model is being created. This exception may be thrown if the context is used inside the OnModelCreating method or if the same context instance is accessed by multiple threads concurrently. Note that instance members of DbContext and related classes are not guaranteed to be thread safe.
+   konum: System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   konum: System.Data.Entity.Internal.InternalContext.Initialize()
+   konum: System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   konum: System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   konum: System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   konum: System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   konum: System.Linq.Queryable.Any[TSource](IQueryable`1 source, Expression`1 predicate)
+   konum: MyEvernote.DataAccessLayer.EFRepositories.Repository`1.Any(Expression`1 where) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.DataAccessLayer\EFRepositories\Repository.cs içinde: satýr 95
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.UserIsExistByActivedGuid(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 80
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.ValidateForActivedUser(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 52
+   konum: MyEvernote.BusinessLayer.Users.UserService.ValidateForActivedProfile(String activetedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Users\UserService.cs içinde: satýr 97
+   konum: MyEvernote.Web.Controllers.UserController.ActivedProfile(InsertUserDto dto) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.Web\Controllers\UserController.cs içinde: satýr 43
+2018-07-16 22:42:56,767 [26] ERROR ErrorLogger - Nesne baþvurusu bir nesnenin örneðine ayarlanmadý.
+
+ StackTrace:   konum: System.Data.Entity.Internal.Linq.InternalSet`1.get_Expression()
+   konum: System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Expression()
+   konum: System.Linq.Queryable.Any[TSource](IQueryable`1 source, Expression`1 predicate)
+   konum: MyEvernote.DataAccessLayer.EFRepositories.Repository`1.Any(Expression`1 where) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.DataAccessLayer\EFRepositories\Repository.cs içinde: satýr 95
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.UserIsExistByActivedGuid(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 80
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.ValidateForActivedUser(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 52
+   konum: MyEvernote.BusinessLayer.Users.UserService.ValidateForActivedProfile(String activetedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Users\UserService.cs içinde: satýr 97
+   konum: MyEvernote.Web.Controllers.UserController.ActivedProfile(InsertUserDto dto) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.Web\Controllers\UserController.cs içinde: satýr 43
+System.NullReferenceException: Nesne baþvurusu bir nesnenin örneðine ayarlanmadý.
+   konum: System.Data.Entity.Internal.Linq.InternalSet`1.get_Expression()
+   konum: System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Expression()
+   konum: System.Linq.Queryable.Any[TSource](IQueryable`1 source, Expression`1 predicate)
+   konum: MyEvernote.DataAccessLayer.EFRepositories.Repository`1.Any(Expression`1 where) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.DataAccessLayer\EFRepositories\Repository.cs içinde: satýr 95
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.UserIsExistByActivedGuid(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 80
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.ValidateForActivedUser(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 52
+   konum: MyEvernote.BusinessLayer.Users.UserService.ValidateForActivedProfile(String activetedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Users\UserService.cs içinde: satýr 97
+   konum: MyEvernote.Web.Controllers.UserController.ActivedProfile(InsertUserDto dto) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.Web\Controllers\UserController.cs içinde: satýr 43
+2018-07-16 23:02:46,730 [23] ERROR ErrorLogger - An error occurred while executing the command definition. See the inner exception for details.
+
+ StackTrace:   konum: System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   konum: System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   konum: System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   konum: System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   konum: System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   konum: System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   konum: System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   konum: System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   konum: System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   konum: System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   konum: System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__3[TResult](IEnumerable`1 sequence)
+   konum: System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   konum: System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   konum: System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   konum: System.Linq.Queryable.Any[TSource](IQueryable`1 source, Expression`1 predicate)
+   konum: MyEvernote.DataAccessLayer.EFRepositories.Repository`1.Any(Expression`1 where) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.DataAccessLayer\EFRepositories\Repository.cs içinde: satýr 95
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.UserIsExistByActivedGuid(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 80
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.ValidateForActivedUser(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 52
+   konum: MyEvernote.BusinessLayer.Users.UserService.ValidateForActivedProfile(String activetedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Users\UserService.cs içinde: satýr 97
+   konum: MyEvernote.Web.Controllers.UserController.ActivedProfile(InsertUserDto dto) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.Web\Controllers\UserController.cs içinde: satýr 44
+
+Bu Command ile iliþkili, öncelikle kapatýlmasý gereken açýk bir DataReader zaten var.
+
+ StackTrace:   konum: System.Data.SqlClient.SqlInternalConnectionTds.ValidateConnectionForExecute(SqlCommand command)
+   konum: System.Data.SqlClient.SqlConnection.ValidateConnectionForExecute(String method, SqlCommand command)
+   konum: System.Data.SqlClient.SqlCommand.ValidateCommand(String method, Boolean async)
+   konum: System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   konum: System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   konum: System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   konum: System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   konum: System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   konum: System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   konum: System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   konum: System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   konum: System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   konum: System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   konum: System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+System.Data.Entity.Core.EntityCommandExecutionException: An error occurred while executing the command definition. See the inner exception for details. ---> System.InvalidOperationException: Bu Command ile iliþkili, öncelikle kapatýlmasý gereken açýk bir DataReader zaten var.
+   konum: System.Data.SqlClient.SqlInternalConnectionTds.ValidateConnectionForExecute(SqlCommand command)
+   konum: System.Data.SqlClient.SqlConnection.ValidateConnectionForExecute(String method, SqlCommand command)
+   konum: System.Data.SqlClient.SqlCommand.ValidateCommand(String method, Boolean async)
+   konum: System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   konum: System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   konum: System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   konum: System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   konum: System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   konum: System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   konum: System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   konum: System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   konum: System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   konum: System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   konum: System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   --- Ýç özel durum yýðýný izlemesinin sonu ---
+   konum: System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   konum: System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   konum: System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   konum: System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   konum: System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   konum: System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   konum: System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   konum: System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   konum: System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   konum: System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   konum: System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__3[TResult](IEnumerable`1 sequence)
+   konum: System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   konum: System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   konum: System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   konum: System.Linq.Queryable.Any[TSource](IQueryable`1 source, Expression`1 predicate)
+   konum: MyEvernote.DataAccessLayer.EFRepositories.Repository`1.Any(Expression`1 where) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.DataAccessLayer\EFRepositories\Repository.cs içinde: satýr 95
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.UserIsExistByActivedGuid(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 80
+   konum: MyEvernote.BusinessLayer.Validation.User.UserValidator.ValidateForActivedUser(String activedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Validation\User\UserValidator.cs içinde: satýr 52
+   konum: MyEvernote.BusinessLayer.Users.UserService.ValidateForActivedProfile(String activetedGuid) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.BusinessLayer\Users\UserService.cs içinde: satýr 97
+   konum: MyEvernote.Web.Controllers.UserController.ActivedProfile(InsertUserDto dto) C:\Users\GulsumPARTAL\Desktop\WorkSpace\MyEvernote\MyEvernote\MyEvernote.Web\Controllers\UserController.cs içinde: satýr 44
